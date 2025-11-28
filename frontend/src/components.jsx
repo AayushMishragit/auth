@@ -2,7 +2,7 @@ import React from 'react'
 
 function components() {
   return (
-    <div><h1>hello</h1></div>
+    <div><h1>hello combo main</h1></div>
   )
 }
 
