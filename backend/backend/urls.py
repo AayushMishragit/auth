@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from api.views import hello
-
+from rest_framework_jwt import views as jwt_views
 urlpatterns = [
     path('hello/', hello),
     
