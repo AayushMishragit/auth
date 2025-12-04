@@ -38,10 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
-    'api.users',
+    'corsheaders',
     'rest_framework',
-    'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'rest_framework_simplejwt.token_blacklist',  # added for token blacklisting,
 ]
 
 MIDDLEWARE = [
@@ -54,7 +53,20 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CORS_ALLOWED_ALL_ORIGINS =True
+CORS_ORIGINS_ALLOW_ALL =True# to allow all origins for CORS during development
+REST_FRAMEWORK ={
+    'DEFAULT_AUTHENTIACTION_CLASSES':[
+        'rest_fraamework_simplejwt.authentication.JWTAuthentication',
+    ]
+
+    
+}
+SIMPLE_JWT ={
+    'ACCESS_TOKEN_LIFETIME':timedelta(minutes=10),
+    'REFRESH_TOKEN_LIFETIME':timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS':False,
+    'BLACKLIST_AFTER_ROTATION':True,
+}# added the SIMPLE_JWT token configurations to implement an access/refresh logic
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
