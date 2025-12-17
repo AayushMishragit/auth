@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-from datetime import timedelta
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@o%@hwwxp&f5x^6ey0c_fniespwz977xy-fwugd$jz58e6z#_1'
+SECRET_KEY = 'django-insecure-^$3g3=v6)4_dd)@8&iah54g6_z-aorx(i&pa3sdf^wkk313-mv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,14 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api',
-    'corsheaders',
     'rest_framework',
-    'rest_framework_simplejwt.token_blacklist',  # added for token blacklisting,
+    'corsheaders',
+    'rest_framework_simplejwt.token_blacklist',
+    'api'
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,28 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-CORS_ORIGINS_ALLOW_ALL =True# to allow all origins for CORS during development
-REST_FRAMEWORK ={
-    'DEFAULT_AUTHENTIACTION_CLASSES':[
-        'rest_fraamework_simplejwt.authentication.JWTAuthentication',
-    ]
-
-    
-}
-SIMPLE_JWT ={
-    'ACCESS_TOKEN_LIFETIME':timedelta(minutes=10),
-    'REFRESH_TOKEN_LIFETIME':timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS':False,
-    'BLACKLIST_AFTER_ROTATION':True,
-}# added the SIMPLE_JWT token configurations to implement an access/refresh logic
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000"
-
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'backend.urls'
